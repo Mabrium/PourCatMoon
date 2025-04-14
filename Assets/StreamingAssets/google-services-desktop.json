@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "110021489702",
+    "project_id": "fourcatmoon-e3623",
+    "storage_bucket": "fourcatmoon-e3623.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110021489702:android:349ed1a4170e9471b122e7",
+        "android_client_info": {
+          "package_name": "com.Mabrium.FourCatMoon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHt_f2O9UKWQ0HV5xnNylyABA-w__ETss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

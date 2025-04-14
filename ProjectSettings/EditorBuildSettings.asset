@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Lob.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/MapScene.unity
+    guid: 55decbc1f9703454ea02c22f758e60af
+  - enabled: 1
+    path: Assets/Scenes/BattleScene.unity
+    guid: 318a18124c7e81747a08422241284982
+  - enabled: 1
+    path: Assets/Scenes/GachaScene.unity
+    guid: 80f422501be43d741b912365d7efe5a6
+  - enabled: 1
+    path: Assets/Scenes/Gacha.unity
+    guid: 4237859f9c1a3214381cd56d8b72c05c
   m_configObjects: {}

@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System.Data;
 
 public class CharacterSpawner : MonoBehaviour
 {
-    private CharacterData characterData;
+    [SerializeField] private CharacterData characterData;
 
     void Awake()
     {
-        characterData = GetComponent<CharacterData>();
+
     }
 
     void Start()
     {
-        
+        characterData = GetComponent<CharacterData>();
     }
 
     void Update()
@@ -23,8 +25,9 @@ public class CharacterSpawner : MonoBehaviour
 
     public void RandomStatistics()
     {
-        characterData.hp = Random.Range(14, 17);
         characterData.atk = Random.Range(4, 6);
         characterData.def = Random.Range(3, 6);
+        characterData.hp = Random.Range(14, 17);
     }
+
 }

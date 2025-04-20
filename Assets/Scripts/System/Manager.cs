@@ -22,17 +22,6 @@ public class Manager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-
     #region 씬
     /// <summary>
     /// 다른 씬으로 넘어가는데 전 화면으로 돌아가기가 필요하면 사용

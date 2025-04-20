@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class GachaManager : MonoBehaviour
 {
-    public GameObject[] characterSpawners;
+    private GameObject cat;
+    public GameObject prefabObject;
+    public GameObject alpha;
+    [SerializeField] private RectTransform rectTransform;
+
     public List<CharacterSpawner> spawners = new List<CharacterSpawner>();
+
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
+
     void Start()
     {
+
         PrefabMove();
     }
 
@@ -22,19 +33,40 @@ public class GachaManager : MonoBehaviour
         //크게 바꾸기 이게 실행되면 프리팹 10개의 생성하고 생성할 때 마다 그 데이터를 저장하기
 
         //10뽑일 때
+        int num = 0;
+        int ma = 300;
         if (GachaSelect.gacha10pOption)
         {
-            for (int i = 0; i < characterSpawners.Length; i++)
+            for (int i = 1; i < 11; i++)
             {
-                spawners.Add(characterSpawners[i].GetComponent<CharacterSpawner>());
+                Spawn();
+                cat.transform.localPosition = new Vector3(-700f + (num * 350f), ma, 0);
+                num++;
+                if(i == 5)
+                {
+                    num = 0;
+                    ma = -165;
+                }
             }
             Debug.Log("10뽑");
         }
         //1뽑일 때
         else if (!GachaSelect.gacha10pOption)
         {
-            spawners.Add(characterSpawners[0].GetComponent<CharacterSpawner>());
+            Spawn();
             Debug.Log("1뽑");
         }
+    }
+
+    private void Spawn()
+    {
+        cat = Instantiate(prefabObject, rectTransform.anchoredPosition, Quaternion.identity, rectTransform.transform);
+        CharacterSpawner PrefabScript = cat.GetComponent<CharacterSpawner>();
+        spawners.Add(PrefabScript);
+    }
+
+    public void TouchCard()
+    {
+        alpha.SetActive(!alpha.activeSelf);
     }
 }

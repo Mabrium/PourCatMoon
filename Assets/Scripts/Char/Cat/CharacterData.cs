@@ -6,9 +6,9 @@ public class CharacterData : MonoBehaviour
 {
     [SerializeField] private int level;
     [SerializeField] private int exp;
-    public int hp;
     public int atk;
     public int def;
+    public int hp;
 
     [SerializeField] private int[] upExp = { 10, 20, 40, 80, 160 };
 

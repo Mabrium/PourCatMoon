@@ -29,4 +29,9 @@ public class FirstQuarterCat : CharacterData
     { 
         
     }
+
+    protected override void StatisticsUp()
+    {
+        //atk += Random.Range()
+    }
 }

@@ -32,8 +32,8 @@ public class SBBMoonCat : CharacterData
 
     protected override void StatisticsUp()
     {
-        atk += Random.Range(4, 7);
-        def += Random.Range(6, 8);
+        atk += Random.Range(7, 10);
+        def += Random.Range(6, 9);
         hp += Random.Range(30, 33);
     }
 }

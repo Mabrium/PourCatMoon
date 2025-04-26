@@ -233,7 +233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &541930615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,7 +434,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127734025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4354805f2ec0ae4d9df0360e111d0ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 98d4a9682357e664cb059689493731a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
@@ -444,8 +444,6 @@ MonoBehaviour:
   hp: 0
   speed: 0
   skillPoint: 0
-  skillPointLevel: 050000000a0000001e000000
-  upExp: 0a0000001400000028000000500000008c000000dc00000040010000c2010000f4010000fe01000008020000120200001c02000026020000300200003a020000440200004e02000058020000620200006c02000076020000800200008a020000940200009e020000a8020000b2020000bc020000
 --- !u!1 &1500405290
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1921394046
 MonoBehaviour:
   m_ObjectHideFlags: 0

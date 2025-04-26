@@ -14,4 +14,27 @@ public class LunarEclipseCat : CharacterData
     {
         
     }
+
+    protected override void Skill1()
+    {
+        
+    }
+
+    protected override void Skill2() 
+    {
+
+    }
+
+    protected override void Skill3()
+    {
+        
+    }
+
+    protected override void StatisticsUp()
+    {
+        atk += Random.Range(2, 4);
+        def += Random.Range(6, 8);
+        hp += Random.Range(28, 31);
+        Speedvalue();
+    }
 }

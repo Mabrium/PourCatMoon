@@ -7,7 +7,8 @@ public class CharacterData : MonoBehaviour
     public int atk;
     public int def;
     public int hp;
-    public int speed;
+    public float speed;
+    private int speedValue;
     public int skillPoint;
 
     private int expI = 0;
@@ -61,7 +62,24 @@ public class CharacterData : MonoBehaviour
     {
         atk += Random.Range(3, 6);
         def += Random.Range(4, 6);
-        hp += Random.Range(22, 25);
-        speed += Random.Range(0, 2);
+        hp += Random.Range(23, 25);
+        speed += Random.Range(1, 3);
+    }
+
+    /// <summary>
+    /// 속도값 1, 0.5, 2 나오는것
+    /// </summary>
+    protected void Speedvalue()
+    {
+        speedValue = Random.Range(0, 3);
+        switch (speedValue)
+        {
+            case 0: speed += 0;
+                break;
+            case 1: speed += (float)0.5;
+                break;
+            case 2: speed += 1;
+                break;
+        }
     }
 }

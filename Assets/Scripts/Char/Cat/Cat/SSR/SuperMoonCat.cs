@@ -14,4 +14,12 @@ public class SuperMoonCat : CharacterData
     {
         
     }
+
+    protected override void StatisticsUp()
+    {
+        atk += Random.Range(2, 5);
+        def += Random.Range(7, 9);
+        hp += Random.Range(26, 29);
+        speed += Random.Range(1, 3);
+    }
 }

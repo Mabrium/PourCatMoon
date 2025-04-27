@@ -60,10 +60,7 @@ public class CharacterData : MonoBehaviour
 
     protected virtual void StatisticsUp()
     {
-        atk += Random.Range(3, 6);
-        def += Random.Range(4, 6);
-        hp += Random.Range(23, 25);
-        speed += Random.Range(1, 3);
+
     }
 
     /// <summary>

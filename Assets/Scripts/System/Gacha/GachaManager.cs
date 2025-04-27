@@ -5,11 +5,13 @@ using UnityEngine;
 public class GachaManager : MonoBehaviour
 {
     private GameObject cat;
-    public GameObject prefabObject;
+    public GameObject[] prefabObject;
     public GameObject alpha;
     [SerializeField] private RectTransform rectTransform;
 
     public List<CharacterSpawner> spawners = new List<CharacterSpawner>();
+
+    public int i = 0;
 
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class GachaManager : MonoBehaviour
         int ma = 300;
         if (GachaSelect.gacha10pOption)
         {
-            for (int i = 1; i < 11; i++)
+            for (i = 1; i < 11; i++)
             {
                 Spawn();
                 cat.transform.localPosition = new Vector3(-700f + (num * 350f), ma, 0);
@@ -60,7 +62,7 @@ public class GachaManager : MonoBehaviour
 
     private void Spawn()
     {
-        cat = Instantiate(prefabObject, rectTransform.anchoredPosition, Quaternion.identity, rectTransform.transform);
+        cat = Instantiate(prefabObject[i-1], rectTransform.anchoredPosition, Quaternion.identity, rectTransform.transform);
         CharacterSpawner PrefabScript = cat.GetComponent<CharacterSpawner>();
         spawners.Add(PrefabScript);
     }

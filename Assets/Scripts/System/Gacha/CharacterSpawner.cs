@@ -15,7 +15,7 @@ public class CharacterSpawner : MonoBehaviour
 
     void Start()
     {
-        //characterData = GetComponent<CharacterData>();
+        StartRandomStatistics();
     }
 
     void Update()
@@ -24,12 +24,17 @@ public class CharacterSpawner : MonoBehaviour
     }
 
     //나중에 캐릭터의 속성(달)에 따라 다르게 들어가는 수치로 바꾸기
-    public void RandomStatistics()
+    public void StartRandomStatistics()
     {
-        characterData.atk = Random.Range(4, 6);
-        characterData.def = Random.Range(3, 6);
-        characterData.hp = Random.Range(14, 17);
-        characterData.speed = Random.Range(10, 11);
+        characterData.atk = Random.Range(3, 6);
+        characterData.def = Random.Range(4, 6);
+        characterData.hp = Random.Range(23, 25);
+        characterData.speed = Random.Range(10, 12);
+    }
+
+    public void SaveStatistics()
+    {
+
     }
 
 }

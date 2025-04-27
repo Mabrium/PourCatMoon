@@ -32,7 +32,7 @@ public class BloodMoonCat : CharacterData
 
     protected override void StatisticsUp()
     {
-        atk += Random.Range(4, 7);
+        atk += Random.Range(5, 8);
         def += Random.Range(3, 7);
         hp += Random.Range(24, 27);
         speed += Random.Range(1, 3);

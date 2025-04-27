@@ -34,6 +34,7 @@ public class SBBMoonCat : CharacterData
     {
         atk += Random.Range(7, 10);
         def += Random.Range(6, 9);
-        hp += Random.Range(30, 33);
+        hp += Random.Range(32, 35);
+        speed += Random.Range(1, 5);
     }
 }

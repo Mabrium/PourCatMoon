@@ -155,11 +155,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e589ea35f9a3c4eab8aa095c4fa3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabObject: {fileID: 1276666114089530762, guid: 84970ba8883856b44a161b4608124226,
-    type: 3}
+  prefabObject:
+  - {fileID: 1276666114089530762, guid: 479059859f0bc9142b1bfea2cca6cc34, type: 3}
+  - {fileID: 1276666114089530762, guid: 84970ba8883856b44a161b4608124226, type: 3}
+  - {fileID: 1276666114089530762, guid: 3fdbed79c21febe42b7bf7f3ee3f7167, type: 3}
+  - {fileID: 1276666114089530762, guid: dbb3c0832b310a9439e2bb419f98e516, type: 3}
+  - {fileID: 1276666114089530762, guid: 5eac401541932c942bf9d5052f7ceef0, type: 3}
+  - {fileID: 1276666114089530762, guid: 303b2fc640579e7459afda815b768b54, type: 3}
+  - {fileID: 1276666114089530762, guid: 71f64c9515ed50942ba5fa29a9e72784, type: 3}
   alpha: {fileID: 1768201317}
   rectTransform: {fileID: 343911027}
   spawners: []
+  i: 0
 --- !u!114 &343911024
 MonoBehaviour:
   m_ObjectHideFlags: 0

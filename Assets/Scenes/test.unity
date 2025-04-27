@@ -402,7 +402,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1127734027}
-  - component: {fileID: 1127734028}
   m_Layer: 0
   m_Name: MoonCat
   m_TagString: Untagged
@@ -425,25 +424,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1127734028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127734025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98d4a9682357e664cb059689493731a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 1
-  exp: 0
-  atk: 0
-  def: 0
-  hp: 0
-  speed: 0
-  skillPoint: 0
 --- !u!1 &1500405290
 GameObject:
   m_ObjectHideFlags: 0

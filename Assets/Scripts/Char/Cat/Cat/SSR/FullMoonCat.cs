@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FullMoonCat : CharacterData
 {
-    //보름달
+    //보름달, 만월
     void Start()
     {
         

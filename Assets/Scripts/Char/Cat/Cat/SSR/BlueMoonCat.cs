@@ -14,4 +14,27 @@ public class BlueMoonCat : CharacterData
     {
         
     }
+
+    protected override void Skill1()
+    {
+        
+    }
+
+    protected override void Skill2()
+    {
+
+    }
+
+    protected override void Skill3()
+    {
+        
+    }
+
+    protected override void StatisticsUp()
+    {
+        atk += Random.Range(2, 5);
+        def += Random.Range(3, 5);
+        hp += Random.Range(31, 33);
+        speed += Random.Range(1, 3);
+    }
 }

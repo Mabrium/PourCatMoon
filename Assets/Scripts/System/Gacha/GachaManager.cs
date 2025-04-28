@@ -41,7 +41,7 @@ public class GachaManager : MonoBehaviour
         {
             for (i = 1; i < 11; i++)
             {
-                Spawn();
+                RandomSpawn();
                 cat.transform.localPosition = new Vector3(-700f + (num * 350f), ma, 0);
                 num++;
                 if(i == 5)
@@ -50,25 +50,45 @@ public class GachaManager : MonoBehaviour
                     ma = -165;
                 }
             }
-            Debug.Log("10»Ì");
         }
         //1»ÌÀÏ ¶§
         else if (!GachaSelect.gacha10pOption)
         {
-            Spawn();
-            Debug.Log("1»Ì");
+            RandomSpawn();
         }
     }
 
-    private void Spawn()
+    private void RandomSpawn()
     {
-        cat = Instantiate(prefabObject[i-1], rectTransform.anchoredPosition, Quaternion.identity, rectTransform.transform);
+        int value = Random.Range(0, 1001);
+        print(value);
+        if(value < 10)
+        {
+            Spawn(0);
+        }
+        else if (value >= 10 &&  value < 400)
+        {
+            int a = Random.Range(1, 4);
+            Spawn(a);
+        }
+        else if(value >= 400 &&  value <= 1000)
+        {
+            int b = Random.Range(4, 7);
+            Spawn(b);
+        }
+    }
+
+    private void Spawn(int spawnNumber)
+    {
+        cat = Instantiate(prefabObject[spawnNumber], rectTransform.anchoredPosition, Quaternion.identity, rectTransform.transform);
         CharacterSpawner PrefabScript = cat.GetComponent<CharacterSpawner>();
         spawners.Add(PrefabScript);
     }
+
 
     public void TouchCard()
     {
         alpha.SetActive(!alpha.activeSelf);
     }
+
 }

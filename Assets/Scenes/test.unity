@@ -402,6 +402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1127734027}
+  - component: {fileID: 1127734028}
   m_Layer: 0
   m_Name: MoonCat
   m_TagString: Untagged
@@ -424,6 +425,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1127734028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127734025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6a78ec25a973147bed04c6b7ca625a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atk: 50
+  def: 30
+  hp: 100
+  speed: 5.5
+  speedValue: 5
 --- !u!1 &1500405290
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +453,7 @@ GameObject:
   - component: {fileID: 1500405291}
   - component: {fileID: 1500405293}
   - component: {fileID: 1500405292}
+  - component: {fileID: 1500405294}
   m_Layer: 5
   m_Name: Free Flat Arrow 5 N Icon
   m_TagString: Untagged
@@ -499,6 +518,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500405290}
   m_CullTransparentMesh: 1
+--- !u!114 &1500405294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500405290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6a78ec25a973147bed04c6b7ca625a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atk: 4
+  def: 6
+  hp: 7
+  speed: 5.5
+  speedValue: 10
 --- !u!1 &1921394045
 GameObject:
   m_ObjectHideFlags: 0

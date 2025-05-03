@@ -7,6 +7,8 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject menuButton;
     [SerializeField] private GameObject Nl;
     public Animator animator;
+
+    private string menuAnimationBool = "MenuOn";
     void Start()
     {
         
@@ -22,14 +24,19 @@ public class Menu : MonoBehaviour
     {
         menuButton.SetActive(false);
         Nl.SetActive(true);
-        //메뉴창 옆에서 나오는 애니메이션 실행
+        animator.SetBool(menuAnimationBool, true);
     }
 
     public void CloseMenu()
     {
-        //임시 사용
-        menuButton.SetActive(true);
         Nl.SetActive(false);
-        //메뉴창이 다시 들어가는 애니메이션
+        animator.SetBool(menuAnimationBool, false);
+        StartCoroutine(Close());
+    }
+
+    private IEnumerator Close()
+    {
+        yield return new WaitForSeconds(0.5f);
+        menuButton.SetActive(true);
     }
 }

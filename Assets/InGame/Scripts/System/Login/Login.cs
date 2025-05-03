@@ -17,7 +17,7 @@ public class Login : MonoBehaviour
     public string UserID;
     public string Password;
 
-
+    private string MainScene = "MainScene";
     public int RememberYesNo;
     void Start()
     {
@@ -72,6 +72,7 @@ public class Login : MonoBehaviour
                 if (UserID == readID && Password == readPW)
                 {
                     Debug.Log("°°À½");
+                    SceneManager.LoadScene(MainScene);
                 }
                 else if(UserID != readID || Password != readPW)
                 {

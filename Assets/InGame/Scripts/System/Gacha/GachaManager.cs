@@ -11,7 +11,7 @@ public class GachaManager : MonoBehaviour
 
     public List<CharacterSpawner> spawners = new List<CharacterSpawner>();
 
-    public int i = 0;
+    private int i = 0;
 
     private void Awake()
     {

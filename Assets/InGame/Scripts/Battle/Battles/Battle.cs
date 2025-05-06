@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Battle : MonoBehaviour
 {
+
     void Start()
     {
-        
+        TurnStart();
     }
 
     void Update()
     {
         
+    }
+
+    private void TurnStart()
+    {
+
     }
 }

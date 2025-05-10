@@ -61,12 +61,11 @@ public class GachaManager : MonoBehaviour
     private void RandomSpawn()
     {
         int value = Random.Range(0, 1001);
-        print(value);
-        if(value < 10)
+        if(value < 5)
         {
             Spawn(0);
         }
-        else if (value >= 10 &&  value < 400)
+        else if (value >= 5 &&  value < 400)
         {
             int a = Random.Range(1, 4);
             Spawn(a);
@@ -84,7 +83,6 @@ public class GachaManager : MonoBehaviour
         CharacterSpawner PrefabScript = cat.GetComponent<CharacterSpawner>();
         spawners.Add(PrefabScript);
     }
-
 
     public void TouchCard()
     {

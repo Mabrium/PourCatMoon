@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Manager : MonoBehaviour
 {
     public static Manager Instance;
+    public string userID;
 
     private Stack<string> sceneHistory = new Stack<string>();
 
@@ -21,6 +22,7 @@ public class Manager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
     #region ¾À
     /// <summary>

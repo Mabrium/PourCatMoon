@@ -13,12 +13,15 @@ using Firebase.Extensions;
 public class Login : MonoBehaviour
 {
     private FirebaseFirestore db;
+    [SerializeField] private Manager manager;
     [SerializeField] private TMP_InputField[] inputField;
-    public string UserID;
-    public string Password;
 
-    private string MainScene = "MainScene";
+    public string userID;
+    public string password;
+    private string mainScene = "MainScene";
+
     public int RememberYesNo;
+
     void Start()
     {
         db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
@@ -32,16 +35,16 @@ public class Login : MonoBehaviour
 
     private void UserSignUp()
     {
-        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(UserID).Collection($"{FirebaseString.Profile}").Document($"{UserID}IDPW");
+        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(userID).Collection($"{FirebaseString.Profile}").Document($"{userID}_Player_IDPW");
         Dictionary<string, object> UserData = new()
         {
-            { FirebaseString.UserID, UserID },
-            { FirebaseString.Password, Password }
+            { FirebaseString.UserID, userID },
+            { FirebaseString.Password, password }
         };
         docRef.SetAsync(UserData).ContinueWithOnMainThread(task => {
             if (task.IsFaulted || task.IsCanceled)
             {
-                Debug.LogError("Error writing character data: " + task.Exception);
+                Debug.LogError("Error writing Login: " + task.Exception);
             }
         });
     }
@@ -51,11 +54,11 @@ public class Login : MonoBehaviour
         IDPW();
         string readID;
         string readPW;
-        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(UserID).Collection($"{FirebaseString.Profile}").Document($"{UserID}IDPW");
+        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(userID).Collection($"{FirebaseString.Profile}").Document($"{userID}_Player_IDPW");
         docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task => {
             if (task.IsFaulted || task.IsCanceled)
             {
-                Debug.LogError("Error getting character data: " + task.Exception);
+                Debug.LogError("Error getting Login: " + task.Exception);
             }
             else
             {
@@ -69,12 +72,13 @@ public class Login : MonoBehaviour
                 readID = GetValue<string>(Data, FirebaseString.UserID);
                 readPW = GetValue<string>(Data, FirebaseString.Password);
 
-                if (UserID == readID && Password == readPW)
+                if (userID == readID && password == readPW)
                 {
                     Debug.Log("같음");
-                    SceneManager.LoadScene(MainScene);
+                    LoadID();
+                    SceneManager.LoadScene(mainScene);
                 }
-                else if(UserID != readID || Password != readPW)
+                else if(userID != readID || password != readPW)
                 {
                     Debug.Log("다름");
                 }
@@ -84,15 +88,15 @@ public class Login : MonoBehaviour
 
     public void IDPW()
     {
-        UserID = inputField[0].GetComponent<TMP_InputField>().text;
-        Password = inputField[1].GetComponent<TMP_InputField>().text;
+        userID = inputField[0].GetComponent<TMP_InputField>().text;
+        password = inputField[1].GetComponent<TMP_InputField>().text;
     }
 
     public void IDCheck()
     {
         string readID;
         IDPW();
-        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(UserID).Collection($"{FirebaseString.Profile}").Document($"{UserID}IDPW");
+        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(userID).Collection($"{FirebaseString.Profile}").Document($"{userID}_Player_IDPW");
         docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task => {
             var snapshot = task.Result;
             if (!snapshot.Exists)
@@ -101,13 +105,20 @@ public class Login : MonoBehaviour
             }
             var Data = snapshot.ToDictionary();
             readID = GetValue<string>(Data, FirebaseString.UserID);
-            if (UserID == readID)
+            if (userID == readID)
             {
                 Debug.Log("안돼");
             }
         });
 
     }
+
+    private void LoadID()
+    {
+        manager.userID = userID;
+    }
+
+
 
     T GetValue<T>(Dictionary<string, object> data, string key)
     {

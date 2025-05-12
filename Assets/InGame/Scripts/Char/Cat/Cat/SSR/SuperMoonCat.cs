@@ -19,7 +19,7 @@ public class SuperMoonCat : CharacterData
     {
         atk += Random.Range(2, 5);
         def += Random.Range(7, 9);
-        hp += Random.Range(26, 29);
+        maxHp += Random.Range(26, 29);
         speed += Random.Range(1, 3);
     }
 }

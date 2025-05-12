@@ -28,7 +28,7 @@ public class CharacterSpawner : MonoBehaviour
     {
         characterData.atk = Random.Range(3, 6);
         characterData.def = Random.Range(4, 6);
-        characterData.hp = Random.Range(23, 25);
+        characterData.maxHp = Random.Range(23, 25);
         characterData.speed = Random.Range(10, 12);
     }
 

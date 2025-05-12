@@ -34,7 +34,7 @@ public class SolarEclipseCat : CharacterData
     {
         atk += Random.Range(5, 8);
         def += Random.Range(2, 4);
-        hp += Random.Range(21, 23);
+        maxHp += Random.Range(21, 23);
         speed += Random.Range(1, 3);
     }
 }

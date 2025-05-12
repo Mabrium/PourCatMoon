@@ -25,7 +25,7 @@ public class BattleStat : MonoBehaviour
     {
         tmpUGUI[0].text = charData.atk.ToString();
         tmpUGUI[1].text = charData.def.ToString();
-        tmpUGUI[2].text = charData.hp.ToString();
+        tmpUGUI[2].text = charData.maxHp.ToString();
         tmpUGUI[3].text = charData.speed.ToString();
     }
 }

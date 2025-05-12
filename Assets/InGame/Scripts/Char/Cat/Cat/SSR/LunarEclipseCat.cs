@@ -34,7 +34,7 @@ public class LunarEclipseCat : CharacterData
     {
         atk += Random.Range(2, 4);
         def += Random.Range(6, 8);
-        hp += Random.Range(28, 31);
+        maxHp += Random.Range(28, 31);
         Speedvalue();
     }
 }

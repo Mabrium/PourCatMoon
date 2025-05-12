@@ -34,7 +34,7 @@ public class BlueMoonCat : CharacterData
     {
         atk += Random.Range(2, 5);
         def += Random.Range(3, 5);
-        hp += Random.Range(31, 33);
+        maxHp += Random.Range(31, 33);
         speed += Random.Range(1, 3);
     }
 }

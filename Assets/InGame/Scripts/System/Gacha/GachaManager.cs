@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Firebase;
+using Firebase.Firestore;
+using Firebase.Extensions;
+
 public class GachaManager : MonoBehaviour
 {
+    private FirebaseFirestore db;
+    private Manager manager;
+
     private GameObject cat;
     public GameObject[] prefabObject;
     public GameObject alpha;
@@ -15,12 +22,13 @@ public class GachaManager : MonoBehaviour
 
     private void Awake()
     {
+        db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
         rectTransform = GetComponent<RectTransform>();
     }
 
     void Start()
     {
-
+        manager = GetComponent<Manager>();
         PrefabMove();
     }
 
@@ -80,8 +88,49 @@ public class GachaManager : MonoBehaviour
     private void Spawn(int spawnNumber)
     {
         cat = Instantiate(prefabObject[spawnNumber], rectTransform.anchoredPosition, Quaternion.identity, rectTransform.transform);
+        DataCreate(spawnNumber);
         CharacterSpawner PrefabScript = cat.GetComponent<CharacterSpawner>();
         spawners.Add(PrefabScript);
+    }
+
+    private void DataCreate(int spawnNum)
+    {
+        string charName = "null";
+        switch (spawnNum)
+        {
+            case 0:
+                charName = FirebaseString.SBBMoonCat;
+                break;
+            case 1:
+                charName = FirebaseString.SolarEclipseCat;
+                break;
+            case 2:
+                charName = FirebaseString.FullMoonCat;
+                break;
+            case 3:
+                charName = FirebaseString.LunarEclipseCat;
+                break;
+            case 4:
+                charName = FirebaseString.SuperMoonCat;
+                break;
+            case 5:
+                charName = FirebaseString.BlueMoonCat;
+                break;
+            case 6:
+                charName = FirebaseString.BloodMoonCat;
+                break;
+        }
+        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(manager.userID).Collection($"{FirebaseString.CharacterData}").Document($"{charName}");
+        Dictionary<string, object> characterData = new()
+        {
+            {FirebaseString.LEVEL, null},
+            {FirebaseString.EXP, null},
+            {FirebaseString.SKILLPOINT, null},
+            {FirebaseString.ATK, null },
+            {FirebaseString.DEF, null},
+            {FirebaseString.MAXHP, null},
+            {FirebaseString.SPEED, null}
+        }; docRef.SetAsync(characterData).ContinueWithOnMainThread(task => { });
     }
 
     public void TouchCard()

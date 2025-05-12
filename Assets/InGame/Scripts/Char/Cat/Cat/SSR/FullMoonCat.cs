@@ -34,7 +34,7 @@ public class FullMoonCat : CharacterData
     {
         atk += Random.Range(3, 6);
         def += Random.Range(4, 6);
-        hp += Random.Range(23, 25);
+        maxHp += Random.Range(23, 25);
         speed += Random.Range(2, 4);
     }
 }

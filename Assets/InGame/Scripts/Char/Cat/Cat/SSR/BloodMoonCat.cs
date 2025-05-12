@@ -34,7 +34,7 @@ public class BloodMoonCat : CharacterData
     {
         atk += Random.Range(5, 8);
         def += Random.Range(3, 7);
-        hp += Random.Range(24, 27);
+        maxHp += Random.Range(24, 27);
         speed += Random.Range(1, 3);
     }
 }

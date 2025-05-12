@@ -20,8 +20,8 @@ public class LoginRemember : MonoBehaviour
     public void RememberLogin()
     {
         login.IDPW();
-        PlayerPrefs.SetString("ID", login.UserID);
-        PlayerPrefs.SetString("PW", login.Password);
+        PlayerPrefs.SetString("ID", login.userID);
+        PlayerPrefs.SetString("PW", login.password);
         if (toggle.isOn)
         {
             login.RememberYesNo = 1;

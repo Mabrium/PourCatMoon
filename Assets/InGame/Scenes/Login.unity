@@ -1401,6 +1401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af54b14f1b0d5274b8aa0e28a94c5600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userID: 
 --- !u!1 &692061926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,11 +2485,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb97ab81ad202f4389eb0bc039d83b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 615657218}
   inputField:
   - {fileID: 270466558}
   - {fileID: 224639430}
-  UserID: 
-  Password: 
+  userID: 
+  password: 
   RememberYesNo: 0
 --- !u!4 &1613372810
 Transform:
@@ -2971,7 +2973,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 615657217}
   - {fileID: 1730133478}
   - {fileID: 381679324}
   - {fileID: 1613372810}
+  - {fileID: 615657217}

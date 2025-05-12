@@ -1,12 +1,27 @@
 using UnityEngine;
 
+using System;
+using System.Collections.Generic;
+
+using Firebase;
+using Firebase.Firestore;
+using Firebase.Extensions;
+
 public class CharacterData : MonoBehaviour
 {
+    [Header("Name")]
+    [SerializeField] private string Name;
+
+    [Space(4f)]
+    private FirebaseFirestore db;
+    [SerializeField] private Manager manager;
+
+    [Header("Statistics")]
     [SerializeField] private int level = 1;
     [SerializeField] private int exp;
     public int atk;
     public int def;
-    public int hp;
+    public int maxHp;
     public float speed;
     private int speedValue;
     public int skillPoint;
@@ -68,7 +83,7 @@ public class CharacterData : MonoBehaviour
     /// </summary>
     protected void Speedvalue()
     {
-        speedValue = Random.Range(0, 3);
+        speedValue = UnityEngine.Random.Range(0, 3);
         switch (speedValue)
         {
             case 0: speed += 0;
@@ -78,5 +93,64 @@ public class CharacterData : MonoBehaviour
             case 2: speed += 1;
                 break;
         }
+    }
+
+
+    public void DataUpdate()
+    {
+        manager = GetComponent<Manager>();
+        db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
+        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(manager.userID).Collection($"{FirebaseString.CharacterData}").Document($"{Name}");
+        Dictionary<string, object> characterData = new()
+        {
+            {FirebaseString.LEVEL, level},
+            {FirebaseString.EXP, exp},
+            {FirebaseString.SKILLPOINT, skillPoint},
+            {FirebaseString.ATK, atk},
+            {FirebaseString.DEF, def},
+            {FirebaseString.MAXHP, maxHp},
+            {FirebaseString.SPEED, speed}
+        };
+        docRef.SetAsync(characterData).ContinueWithOnMainThread(task => { });
+    }
+
+    public void DataLoad()
+    {
+        manager = GetComponent<Manager>();
+        db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
+        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(manager.userID).Collection($"{FirebaseString.CharacterData}").Document($"{Name}");
+        docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
+        {
+            var snapshot = task.Result;
+            var Data = snapshot.ToDictionary();
+            level = GetValue<int>(Data, FirebaseString.LEVEL);
+            exp = GetValue<int>(Data, FirebaseString.EXP);
+            skillPoint = GetValue<int>(Data, FirebaseString.SKILLPOINT);
+            atk = GetValue<int>(Data, FirebaseString.ATK);
+            def = GetValue<int> (Data, FirebaseString.DEF);
+            maxHp = GetValue<int>(Data, FirebaseString.MAXHP);
+            speed = GetValue<int>(Data, FirebaseString.SPEED);
+        });
+    }
+
+    T GetValue<T>(Dictionary<string, object> data, string key)
+    {
+        if (data.ContainsKey(key))
+        {
+            try
+            {
+                return (T)Convert.ChangeType(data[key], typeof(T)); // 타입에 맞게 변환
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error converting {key}: {ex.Message}");
+            }
+        }
+        else
+        {
+            // 키가 없을 경우 경고 메시지 출력
+            Debug.LogWarning($"Key {key} not found in Firestore data.");
+        }
+        return default(T); // 기본값 반환 (값이 없거나 변환 실패 시)
     }
 }

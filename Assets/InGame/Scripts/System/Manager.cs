@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Manager : MonoBehaviour
 {
     public static Manager Instance;
-    public string userID;
+    public static string userID;
 
     private Stack<string> sceneHistory = new Stack<string>();
 

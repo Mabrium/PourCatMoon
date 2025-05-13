@@ -16,6 +16,7 @@ public static class FirebaseString
     public static string UserID = "UserID";
     public static string Password = "Password";
     public static string CharacterData = "CharacterData";
+    public static string GACHAINT = "GACHAINT";
 
     public static string LEVEL = "LEVEL";
     public static string EXP = "EXP";

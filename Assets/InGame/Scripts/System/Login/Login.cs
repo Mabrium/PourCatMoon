@@ -15,6 +15,7 @@ public class Login : MonoBehaviour
     private FirebaseFirestore db;
     [SerializeField] private Manager manager;
     [SerializeField] private TMP_InputField[] inputField;
+    DocumentReference docRef;
 
     public string userID;
     public string password;
@@ -35,7 +36,7 @@ public class Login : MonoBehaviour
 
     private void UserSignUp()
     {
-        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(userID).Collection($"{FirebaseString.Profile}").Document($"{userID}_Player_IDPW");
+        docRef = db.Collection(FirebaseString.PlayerID).Document(userID).Collection(FirebaseString.Profile).Document($"{userID}_Player_IDPW");
         Dictionary<string, object> UserData = new()
         {
             { FirebaseString.UserID, userID },
@@ -54,7 +55,7 @@ public class Login : MonoBehaviour
         IDPW();
         string readID;
         string readPW;
-        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(userID).Collection($"{FirebaseString.Profile}").Document($"{userID}_Player_IDPW");
+        docRef = db.Collection(FirebaseString.PlayerID).Document(userID).Collection(FirebaseString.Profile).Document($"{userID}_Player_IDPW");
         docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task => {
             if (task.IsFaulted || task.IsCanceled)
             {
@@ -96,7 +97,7 @@ public class Login : MonoBehaviour
     {
         string readID;
         IDPW();
-        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(userID).Collection($"{FirebaseString.Profile}").Document($"{userID}_Player_IDPW");
+        docRef = db.Collection(FirebaseString.PlayerID).Document(userID).Collection(FirebaseString.Profile).Document($"{userID}_Player_IDPW");
         docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task => {
             var snapshot = task.Result;
             if (!snapshot.Exists)
@@ -115,7 +116,7 @@ public class Login : MonoBehaviour
 
     private void LoadID()
     {
-        manager.userID = userID;
+        Manager.userID = userID;
     }
 
 

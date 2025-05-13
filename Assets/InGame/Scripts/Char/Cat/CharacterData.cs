@@ -14,7 +14,7 @@ public class CharacterData : MonoBehaviour
 
     [Space(4f)]
     private FirebaseFirestore db;
-    [SerializeField] private Manager manager;
+    DocumentReference docRef;
 
     [Header("Statistics")]
     [SerializeField] private int level = 1;
@@ -98,9 +98,8 @@ public class CharacterData : MonoBehaviour
 
     public void DataUpdate()
     {
-        manager = GetComponent<Manager>();
         db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
-        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(manager.userID).Collection($"{FirebaseString.CharacterData}").Document($"{Name}");
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(Name).Collection(Name + FirebaseInt.GACHAINT).Document(Name + FirebaseInt.GACHAINT + "Data");
         Dictionary<string, object> characterData = new()
         {
             {FirebaseString.LEVEL, level},
@@ -112,13 +111,13 @@ public class CharacterData : MonoBehaviour
             {FirebaseString.SPEED, speed}
         };
         docRef.SetAsync(characterData).ContinueWithOnMainThread(task => { });
+        print(FirebaseInt.GACHAINT);
     }
 
     public void DataLoad()
     {
-        manager = GetComponent<Manager>();
         db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
-        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(manager.userID).Collection($"{FirebaseString.CharacterData}").Document($"{Name}");
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(Name).Collection(Name + FirebaseInt.GACHAINT).Document(Name + FirebaseInt.GACHAINT + "Data");
         docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
         {
             var snapshot = task.Result;

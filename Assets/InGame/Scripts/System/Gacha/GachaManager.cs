@@ -9,7 +9,6 @@ using Firebase.Extensions;
 public class GachaManager : MonoBehaviour
 {
     private FirebaseFirestore db;
-    private Manager manager;
 
     private GameObject cat;
     public GameObject[] prefabObject;
@@ -28,7 +27,6 @@ public class GachaManager : MonoBehaviour
 
     void Start()
     {
-        manager = GetComponent<Manager>();
         PrefabMove();
     }
 
@@ -120,7 +118,7 @@ public class GachaManager : MonoBehaviour
                 charName = FirebaseString.BloodMoonCat;
                 break;
         }
-        DocumentReference docRef = db.Collection($"{FirebaseString.PlayerID}").Document(manager.userID).Collection($"{FirebaseString.CharacterData}").Document($"{charName}");
+        DocumentReference docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(charName).Collection(charName+FirebaseInt.GACHAINT).Document(charName+FirebaseInt.GACHAINT+"Data");
         Dictionary<string, object> characterData = new()
         {
             {FirebaseString.LEVEL, null},

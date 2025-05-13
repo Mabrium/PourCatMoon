@@ -196,11 +196,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66152eeeb7b91b042bae2b77348030f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: BloodMoonCat
   level: 1
   exp: 0
   atk: 0
   def: 0
-  hp: 0
+  maxHp: 0
   speed: 0
   skillPoint: 0
 --- !u!1 &5952930610012811241

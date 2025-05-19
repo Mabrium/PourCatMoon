@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UsingCatData", menuName = "CatData/Cat", order = int.MaxValue)]
 public class UsingCat : ScriptableObject
 {
+    public int Number;
     public string Name;
     public int LEVEL;
     public int EXP;

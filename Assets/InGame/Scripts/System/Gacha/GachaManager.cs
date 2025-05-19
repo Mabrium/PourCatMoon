@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 using Firebase;
-using Firebase.Firestore;
 using Firebase.Extensions;
+using Firebase.Firestore;
+//using System;
+
+using System.Collections.Generic;
+
+using UnityEngine;
 
 public class GachaManager : MonoBehaviour
 {
     private FirebaseFirestore db;
+    DocumentReference docRef;
 
     private GameObject cat;
     public GameObject[] prefabObject;
@@ -27,6 +29,7 @@ public class GachaManager : MonoBehaviour
 
     void Start()
     {
+        CheckGachaInt();
         PrefabMove();
     }
 
@@ -37,9 +40,6 @@ public class GachaManager : MonoBehaviour
 
     private void PrefabMove()
     {
-
-        //크게 바꾸기 이게 실행되면 프리팹 10개의 생성하고 생성할 때 마다 그 데이터를 저장하기
-
         //10뽑일 때
         int num = 0;
         int ma = 300;
@@ -86,54 +86,45 @@ public class GachaManager : MonoBehaviour
     private void Spawn(int spawnNumber)
     {
         cat = Instantiate(prefabObject[spawnNumber], rectTransform.anchoredPosition, Quaternion.identity, rectTransform.transform);
-        DataCreate(spawnNumber);
         CharacterSpawner PrefabScript = cat.GetComponent<CharacterSpawner>();
         spawners.Add(PrefabScript);
     }
 
-    private void DataCreate(int spawnNum)
+    private void CheckGachaInt()
     {
-        string charName = "null";
-        switch (spawnNum)
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID);
+        docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
         {
-            case 0:
-                charName = FirebaseString.SBBMoonCat;
-                break;
-            case 1:
-                charName = FirebaseString.SolarEclipseCat;
-                break;
-            case 2:
-                charName = FirebaseString.FullMoonCat;
-                break;
-            case 3:
-                charName = FirebaseString.LunarEclipseCat;
-                break;
-            case 4:
-                charName = FirebaseString.SuperMoonCat;
-                break;
-            case 5:
-                charName = FirebaseString.BlueMoonCat;
-                break;
-            case 6:
-                charName = FirebaseString.BloodMoonCat;
-                break;
-        }
-        DocumentReference docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(charName).Collection(charName+FirebaseInt.GACHAINT).Document(charName+FirebaseInt.GACHAINT+"Data");
-        Dictionary<string, object> characterData = new()
-        {
-            {FirebaseString.LEVEL, null},
-            {FirebaseString.EXP, null},
-            {FirebaseString.SKILLPOINT, null},
-            {FirebaseString.ATK, null },
-            {FirebaseString.DEF, null},
-            {FirebaseString.MAXHP, null},
-            {FirebaseString.SPEED, null}
-        }; docRef.SetAsync(characterData).ContinueWithOnMainThread(task => { });
+            var snapshot = task.Result;
+            var Data = snapshot.ToDictionary();
+            FirebaseInt.GACHAINT = GetValue<int>(Data, FirebaseString.GACHAINT);
+        });
     }
+
 
     public void TouchCard()
     {
         alpha.SetActive(!alpha.activeSelf);
     }
 
+    T GetValue<T>(Dictionary<string, object> data, string key)
+    {
+        if (data.ContainsKey(key))
+        {
+            try
+            {
+                return (T)System.Convert.ChangeType(data[key], typeof(T)); // 타입에 맞게 변환
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"Error converting {key}: {ex.Message}");
+            }
+        }
+        else
+        {
+            // 키가 없을 경우 경고 메시지 출력
+            Debug.LogWarning($"Key {key} not found in Firestore data.");
+        }
+        return default(T); // 기본값 반환 (값이 없거나 변환 실패 시)
+    }
 }

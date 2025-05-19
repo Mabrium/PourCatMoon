@@ -9,6 +9,7 @@ using Firebase.Extensions;
 
 public class CharacterData : MonoBehaviour
 {
+    public int characterNumber;
     [Header("Name")]
     [SerializeField] private string Name;
 
@@ -99,7 +100,7 @@ public class CharacterData : MonoBehaviour
     public void DataUpdate()
     {
         db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
-        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(Name).Collection(Name + FirebaseInt.GACHAINT).Document(Name + FirebaseInt.GACHAINT + "Data");
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(Name).Collection(Name + characterNumber).Document(Name + characterNumber + "Data");
         Dictionary<string, object> characterData = new()
         {
             {FirebaseString.LEVEL, level},
@@ -111,13 +112,12 @@ public class CharacterData : MonoBehaviour
             {FirebaseString.SPEED, speed}
         };
         docRef.SetAsync(characterData).ContinueWithOnMainThread(task => { });
-        print(FirebaseInt.GACHAINT);
     }
 
     public void DataLoad()
     {
         db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
-        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(Name).Collection(Name + FirebaseInt.GACHAINT).Document(Name + FirebaseInt.GACHAINT + "Data");
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(Name).Collection(Name + characterNumber).Document(Name + characterNumber + "Data");
         docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
         {
             var snapshot = task.Result;

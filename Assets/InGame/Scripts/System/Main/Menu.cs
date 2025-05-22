@@ -4,25 +4,18 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private GameObject menuButton;
+    [SerializeField] private GameObject[] bhButton;
     [SerializeField] private GameObject Nl;
     public Animator animator;
 
     private string menuAnimationBool = "MenuOn";
-    void Start()
-    {
-        
-    }
-
-
-    void Update()
-    {
-        
-    }
 
     public void ManuClick()
     {
-        menuButton.SetActive(false);
+        for(int i = 0; i < bhButton.Length; i++)
+        {
+            bhButton[i].SetActive(false);
+        }
         Nl.SetActive(true);
         animator.SetBool(menuAnimationBool, true);
     }
@@ -37,6 +30,9 @@ public class Menu : MonoBehaviour
     private IEnumerator Close()
     {
         yield return new WaitForSeconds(0.5f);
-        menuButton.SetActive(true);
+        for (int i = 0; i < bhButton.Length; i++)
+        {
+            bhButton[i].SetActive(true);
+        }
     }
 }

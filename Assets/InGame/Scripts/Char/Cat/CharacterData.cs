@@ -11,7 +11,7 @@ public class CharacterData : MonoBehaviour
 {
     public int characterNumber;
     [Header("Name")]
-    [SerializeField] private string Name;
+    [SerializeField] private string patName;
 
     [Space(4f)]
     private FirebaseFirestore db;
@@ -100,7 +100,7 @@ public class CharacterData : MonoBehaviour
     public void DataUpdate()
     {
         db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
-        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(Name).Collection(Name + characterNumber).Document(Name + characterNumber + "Data");
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterNumber).Document(patName + characterNumber + "Data");
         Dictionary<string, object> characterData = new()
         {
             {FirebaseString.LEVEL, level},
@@ -117,39 +117,18 @@ public class CharacterData : MonoBehaviour
     public void DataLoad()
     {
         db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
-        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(Name).Collection(Name + characterNumber).Document(Name + characterNumber + "Data");
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterNumber).Document(patName + characterNumber + "Data");
         docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
         {
             var snapshot = task.Result;
             var Data = snapshot.ToDictionary();
-            level = GetValue<int>(Data, FirebaseString.LEVEL);
-            exp = GetValue<int>(Data, FirebaseString.EXP);
-            skillPoint = GetValue<int>(Data, FirebaseString.SKILLPOINT);
-            atk = GetValue<int>(Data, FirebaseString.ATK);
-            def = GetValue<int> (Data, FirebaseString.DEF);
-            maxHp = GetValue<int>(Data, FirebaseString.MAXHP);
-            speed = GetValue<int>(Data, FirebaseString.SPEED);
+            level = TUtil.GetValue<int>(Data, FirebaseString.LEVEL);
+            exp = TUtil.GetValue<int>(Data, FirebaseString.EXP);
+            skillPoint = TUtil.GetValue<int>(Data, FirebaseString.SKILLPOINT);
+            atk = TUtil.GetValue<int>(Data, FirebaseString.ATK);
+            def = TUtil.GetValue<int> (Data, FirebaseString.DEF);
+            maxHp = TUtil.GetValue<int>(Data, FirebaseString.MAXHP);
+            speed = TUtil.GetValue<int>(Data, FirebaseString.SPEED);
         });
-    }
-
-    T GetValue<T>(Dictionary<string, object> data, string key)
-    {
-        if (data.ContainsKey(key))
-        {
-            try
-            {
-                return (T)Convert.ChangeType(data[key], typeof(T)); // 타입에 맞게 변환
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"Error converting {key}: {ex.Message}");
-            }
-        }
-        else
-        {
-            // 키가 없을 경우 경고 메시지 출력
-            Debug.LogWarning($"Key {key} not found in Firestore data.");
-        }
-        return default(T); // 기본값 반환 (값이 없거나 변환 실패 시)
     }
 }

@@ -70,8 +70,8 @@ public class Login : MonoBehaviour
                     return;
                 }
                 var Data = snapshot.ToDictionary();
-                readID = GetValue<string>(Data, FirebaseString.UserID);
-                readPW = GetValue<string>(Data, FirebaseString.Password);
+                readID = TUtil.GetValue<string>(Data, FirebaseString.UserID);
+                readPW = TUtil.GetValue<string>(Data, FirebaseString.Password);
 
                 if (userID == readID && password == readPW)
                 {
@@ -105,7 +105,7 @@ public class Login : MonoBehaviour
                 UserSignUp();
             }
             var Data = snapshot.ToDictionary();
-            readID = GetValue<string>(Data, FirebaseString.UserID);
+            readID = TUtil.GetValue<string>(Data, FirebaseString.UserID);
             if (userID == readID)
             {
                 Debug.Log("안돼");
@@ -119,26 +119,4 @@ public class Login : MonoBehaviour
         Manager.userID = userID;
     }
 
-
-
-    T GetValue<T>(Dictionary<string, object> data, string key)
-    {
-        if (data.ContainsKey(key))
-        {
-            try
-            {
-                return (T)Convert.ChangeType(data[key], typeof(T)); // 타입에 맞게 변환
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"Error converting {key}: {ex.Message}");
-            }
-        }
-        else
-        {
-            // 키가 없을 경우 경고 메시지 출력
-            Debug.LogWarning($"Key {key} not found in Firestore data.");
-        }
-        return default(T); // 기본값 반환 (값이 없거나 변환 실패 시)
-    }
 }

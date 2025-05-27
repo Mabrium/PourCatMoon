@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 using Firebase.Extensions;
 using Firebase.Firestore;
@@ -12,6 +13,7 @@ public class LoadCharacterData : MonoBehaviour
     private DocumentReference doRef;
     private CharacterData characterData;
 
+    [SerializeField] private TextMeshProUGUI[] tmp;
     [SerializeField] private string patName;
 
     public int atk;
@@ -22,6 +24,7 @@ public class LoadCharacterData : MonoBehaviour
     void Start()
     {
         db = FirebaseFirestore.GetInstance(FirebaseApp.DefaultInstance);
+        LoadData();
     }
 
     void Update()
@@ -41,7 +44,16 @@ public class LoadCharacterData : MonoBehaviour
             def = TUtil.GetValue<int>(Data, FirebaseString.DEF);
             hp = TUtil.GetValue<int>(Data, FirebaseString.MAXHP);
             speed = TUtil.GetValue<int>(Data, FirebaseString.SPEED);
-
         });
+
+        TMPChange();
+    }
+
+    private void TMPChange()
+    {
+        tmp[0].text = atk.ToString();
+        tmp[1].text = def.ToString();
+        tmp[2].text = hp.ToString();
+        tmp[3].text = speed.ToString();
     }
 }

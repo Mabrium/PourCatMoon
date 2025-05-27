@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 1127734027}
   - component: {fileID: 1127734028}
   m_Layer: 0
-  m_Name: MoonCat
+  m_Name: Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -357,14 +357,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127734025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f6a78ec25a973147bed04c6b7ca625a, type: 3}
+  m_Script: {fileID: 11500000, guid: 691c6c529c2b8f043a74972a4c48f8c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 50
-  def: 30
-  hp: 100
-  speed: 5.5
-  speedValue: 5
 --- !u!1 &1921394045
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +433,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 352963231}
-  - {fileID: 1127734027}
   - {fileID: 1921394048}
   - {fileID: 1069699706}
+  - {fileID: 1127734027}

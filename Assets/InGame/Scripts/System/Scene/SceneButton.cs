@@ -7,6 +7,7 @@ public class SceneButton : MonoBehaviour
 {
     private string gacha = "GachaScene";
     private string character = "char";
+    private string gachaResult = "Gacha";
 
 
     public void GachaScene()
@@ -17,5 +18,10 @@ public class SceneButton : MonoBehaviour
     public void CharScene()
     {
         SceneManager.LoadScene(character);
+    }
+
+    public void Gacha()
+    {
+        SceneManager.LoadScene(gachaResult);
     }
 }

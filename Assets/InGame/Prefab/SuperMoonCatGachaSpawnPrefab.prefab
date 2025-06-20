@@ -196,7 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f96545516bb3546914ed758f4c3828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: SuperMoonCat
+  characterNumber: 0
+  patName: SuperMoonCat
   level: 1
   exp: 0
   atk: 0

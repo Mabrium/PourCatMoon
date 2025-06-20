@@ -14,4 +14,24 @@ public class ThirdQuarterCat : CharacterData
     {
         
     }
+
+    protected override void Skill1()
+    {
+
+    }
+
+    protected override void Skill2()
+    {
+
+    }
+
+    protected override void Skill3()
+    {
+
+    }
+
+    protected override void StatisticsUp()
+    {
+
+    }
 }

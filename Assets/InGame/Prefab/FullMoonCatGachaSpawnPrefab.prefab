@@ -196,7 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2531e10ec9faf9745a01dda2aeb121aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: FullMoonCat
+  characterNumber: 0
+  patName: FullMoonCat
   level: 1
   exp: 0
   atk: 0

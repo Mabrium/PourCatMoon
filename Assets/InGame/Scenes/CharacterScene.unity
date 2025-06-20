@@ -868,7 +868,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed815b6e214529b46aa5f3a601749160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patName: SSB
+  tmp:
+  - {fileID: 954074698}
+  - {fileID: 2096246419}
+  - {fileID: 1839353549}
+  - {fileID: 180298250}
+  patName: BloodMoonCat
   atk: 0
   def: 0
   hp: 0

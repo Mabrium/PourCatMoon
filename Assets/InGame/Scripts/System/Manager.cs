@@ -50,7 +50,8 @@ public class Manager : MonoBehaviour
         if (sceneHistory.Count == 0)
         {
             //종료한거냐 묻는 UI 띄우고 OK 누르면 아래 코드로 닫기
-            //Application.Quit();
+            Application.Quit();
+
         }
     }
     #endregion

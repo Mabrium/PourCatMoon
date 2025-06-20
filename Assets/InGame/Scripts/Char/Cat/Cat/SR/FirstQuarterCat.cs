@@ -5,6 +5,7 @@ using UnityEngine;
 public class FirstQuarterCat : CharacterData
 {
     //ЛѓЧіДо
+
     void Start()
     {
         

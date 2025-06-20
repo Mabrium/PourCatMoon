@@ -34,6 +34,12 @@ public class LoadCharacterData : MonoBehaviour
 
     private void LoadData()
     {
+        //Debug.Log(FirebaseString.PlayerID);
+        //Debug.Log(Manager.userID);
+        //Debug.Log(FirebaseString.CharacterData);
+        //Debug.Log(patName);
+        Debug.Log(patName + characterData.characterNumber);
+        Debug.Log(patName + characterData.characterNumber + "Data");
         doRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterData.characterNumber).Document(patName + characterData.characterNumber + "Data");
         doRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
         {

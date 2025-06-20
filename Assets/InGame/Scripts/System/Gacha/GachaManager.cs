@@ -6,6 +6,7 @@ using Firebase.Firestore;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Diagnostics;
 
 public class GachaManager : MonoBehaviour
 {
@@ -29,8 +30,8 @@ public class GachaManager : MonoBehaviour
 
     void Start()
     {
-        CheckGachaInt();
         PrefabMove();
+        CheckGachaInt();
     }
 
     void Update()
@@ -62,6 +63,7 @@ public class GachaManager : MonoBehaviour
         {
             RandomSpawn();
         }
+        UpdateNumberData();
     }
 
     private void RandomSpawn()
@@ -87,6 +89,8 @@ public class GachaManager : MonoBehaviour
     {
         cat = Instantiate(prefabObject[spawnNumber], rectTransform.anchoredPosition, Quaternion.identity, rectTransform.transform);
         CharacterSpawner PrefabScript = cat.GetComponent<CharacterSpawner>();
+        CharacterNameNumber(spawnNumber);
+        PrefabScript.SaveStatistics();
         spawners.Add(PrefabScript);
     }
 
@@ -100,6 +104,67 @@ public class GachaManager : MonoBehaviour
             FirebaseInt.GACHAINT = TUtil.GetValue<int>(Data, FirebaseString.GACHAINT);
         });
     }
+
+    private void CharacterNameNumber(int randomValue)
+    {
+        switch (randomValue)
+        {
+            case 0: FirebaseInt.SBBMoonCatNumber++; break;
+            case 1: FirebaseInt.SolarEclipseCatNumber++; break;
+            case 2: FirebaseInt.FullMoonCatNumber++; break;
+            case 3: FirebaseInt.LunarEclipseCatNumber++; break;
+            case 4: FirebaseInt.SuperMoonCatNumber++; break;
+            case 5: FirebaseInt.BlueMoonCatNumber++; break;
+            case 6: FirebaseInt.BloodMoonCatNumber++; break;
+        }
+    }
+
+    private void UpdateNumberData()
+    {
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(FirebaseString.SBBMoonCat);
+        Dictionary<string, object> SBBMoonCatData = new()
+        {
+            {FirebaseString.SBBMoonCat, FirebaseInt.SBBMoonCatNumber},
+        };
+        docRef.SetAsync(SBBMoonCatData).ContinueWithOnMainThread(task =>{});
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(FirebaseString.SolarEclipseCat);
+        Dictionary<string, object> SolarEcilpseCatData = new()
+        {
+            {FirebaseString.SolarEclipseCat, FirebaseInt.SolarEclipseCatNumber},
+        };
+        docRef.SetAsync(SolarEcilpseCatData).ContinueWithOnMainThread(task => { });
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(FirebaseString.FullMoonCat);
+        Dictionary<string, object> FullMoonCatData = new()
+        {
+            {FirebaseString.FullMoonCat, FirebaseInt.FullMoonCatNumber},
+        };
+        docRef.SetAsync(FullMoonCatData).ContinueWithOnMainThread(task => { });
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(FirebaseString.LunarEclipseCat);
+        Dictionary<string, object> LunarEclipseCatData = new()
+        {
+            {FirebaseString.LunarEclipseCat, FirebaseInt.LunarEclipseCatNumber},
+        };
+        docRef.SetAsync(LunarEclipseCatData).ContinueWithOnMainThread(task => { });
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(FirebaseString.SuperMoonCat);
+        Dictionary<string, object> SuperMoonCatData = new()
+        {
+            {FirebaseString.SuperMoonCat, FirebaseInt.SuperMoonCatNumber},
+        };
+        docRef.SetAsync(SuperMoonCatData).ContinueWithOnMainThread(task => { });
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(FirebaseString.BlueMoonCat);
+        Dictionary<string, object> BlueMoonCatData = new()
+        {
+            {FirebaseString.BlueMoonCat, FirebaseInt.BlueMoonCatNumber},
+        };
+        docRef.SetAsync(BlueMoonCatData).ContinueWithOnMainThread(task => { });
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(FirebaseString.BloodMoonCat);
+        Dictionary<string, object> BloodMoonCatData = new()
+        {
+            {FirebaseString.BloodMoonCat, FirebaseInt.BloodMoonCatNumber},
+        };
+        docRef.SetAsync(BloodMoonCatData).ContinueWithOnMainThread(task => { });
+    }
+
 
 
     public void TouchCard()

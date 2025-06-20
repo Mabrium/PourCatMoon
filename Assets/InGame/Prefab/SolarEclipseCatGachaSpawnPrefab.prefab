@@ -196,7 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9f873561a53a040807fe90dc50ca1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: SolarEclipseCat
+  characterNumber: 0
+  patName: SolarEclipseCat
   level: 1
   exp: 0
   atk: 0

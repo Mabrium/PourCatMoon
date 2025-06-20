@@ -9,9 +9,11 @@ using Firebase.Extensions;
 
 public class CharacterData : MonoBehaviour
 {
+    [Header("Number")]
     public int characterNumber;
+
     [Header("Name")]
-    [SerializeField] private string patName;
+    public string patName;
 
     [Space(4f)]
     private FirebaseFirestore db;

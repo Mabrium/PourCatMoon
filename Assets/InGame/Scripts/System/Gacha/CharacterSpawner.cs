@@ -27,6 +27,9 @@ public class CharacterSpawner : MonoBehaviour
         characterData.def = Random.Range(4, 6);
         characterData.maxHp = Random.Range(23, 25);
         characterData.speed = Random.Range(10, 12);
+        characterData.skill1Number = Random.Range(1, 4);
+        characterData.skill2Number = Random.Range(1, 4);
+        characterData.skill3Number = 0;
     }
 
     public void SaveStatistics()
@@ -60,22 +63,4 @@ public class CharacterSpawner : MonoBehaviour
         }
     }
 
-    //private List<string> AddNumberedSuffixes(List<string> input)
-    //{
-    //    Dictionary<string, int> countDict = new Dictionary<string, int>();
-    //    List<string> output = new List<string>();
-
-    //    foreach (string item in input)
-    //    {
-    //        if (!countDict.ContainsKey(item))
-    //        {
-    //            countDict[item] = 1;
-    //        }
-    //        else
-    //        {
-    //            countDict[item]++;
-    //        }
-    //        output.Add(item + countDict[item]);
-    //    }
-    //}
 }

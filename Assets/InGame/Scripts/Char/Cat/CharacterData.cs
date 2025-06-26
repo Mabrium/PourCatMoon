@@ -9,10 +9,10 @@ using Firebase.Extensions;
 
 public class CharacterData : MonoBehaviour
 {
-    [Header("Number")]
+    [Header("NUMBER")]
     public int characterNumber;
 
-    [Header("Name")]
+    [Header("NAME")]
     public string patName;
 
     [Space(4f)]
@@ -28,6 +28,9 @@ public class CharacterData : MonoBehaviour
     public float speed;
     private int speedValue;
     public int skillPoint;
+    public int skill1Number;
+    public int skill2Number;
+    public int skill3Number;
 
     private int expI = 0;
     private int spLvI = 0;
@@ -61,19 +64,37 @@ public class CharacterData : MonoBehaviour
         }
     }
 
-    protected virtual void Skill1()
+    protected void Skill1()
     {
-
+        switch (skill1Number)
+        {
+            case 0: break;//없음
+            case 1: Skill1_1(); break;
+            case 2: Skill1_2(); break;
+            case 3: Skill1_3(); break;
+        }
     }
 
-    protected virtual void Skill2()
+    protected void Skill2()
     {
-
+        switch (skill2Number)
+        {
+            case 0: break;
+            case 1: Skill2_1(); break;
+            case 2: Skill2_2(); break;
+            case 3: Skill2_3(); break;
+        }
     }
 
-    protected virtual void Skill3()
+    protected void Skill3()
     {
-
+        switch (skill3Number)
+        {
+            case 0: break;
+            case 1: Skill3_1(); break;
+            case 2: Skill3_2(); break;
+            case 3: Skill3_3(); break;
+        }
     }
 
     protected virtual void StatisticsUp()
@@ -98,6 +119,53 @@ public class CharacterData : MonoBehaviour
         }
     }
 
+    #region 세부 스킬
+    protected virtual void Skill1_1()
+    {
+
+    }
+
+    protected virtual void Skill1_2()
+    {
+
+    }
+
+    protected virtual void Skill1_3()
+    {
+
+    }
+
+    protected virtual void Skill2_1()
+    {
+
+    }
+
+    protected virtual void Skill2_2()
+    {
+
+    }
+
+    protected virtual void Skill2_3()
+    {
+
+    }
+
+    protected virtual void Skill3_1()
+    {
+
+    }
+
+    protected virtual void Skill3_2()
+    {
+
+    }
+
+    protected virtual void Skill3_3()
+    {
+
+    }
+
+    #endregion
 
     public void DataUpdate()
     {
@@ -114,6 +182,14 @@ public class CharacterData : MonoBehaviour
             {FirebaseString.SPEED, speed}
         };
         docRef.SetAsync(characterData).ContinueWithOnMainThread(task => { });
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterNumber).Document(patName + characterNumber + "Skill");
+        Dictionary<string, object> characterSkill = new()
+        {
+            {FirebaseString.SKILL1NUMBER, skill1Number},
+            {FirebaseString.SKILL2NUMBER, skill2Number},
+            {FirebaseString.SKILL3NUMBER, skill3Number}
+        };
+        docRef.SetAsync(characterSkill).ContinueWithOnMainThread(task => { });
     }
 
     public void DataLoad()
@@ -131,6 +207,15 @@ public class CharacterData : MonoBehaviour
             def = TUtil.GetValue<int> (Data, FirebaseString.DEF);
             maxHp = TUtil.GetValue<int>(Data, FirebaseString.MAXHP);
             speed = TUtil.GetValue<int>(Data, FirebaseString.SPEED);
+        });
+        docRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterNumber).Document(patName + characterNumber + "Skill");
+        docRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
+        {
+            var snapshot = task.Result;
+            var Data = snapshot.ToDictionary();
+            skill1Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL1NUMBER);
+            skill2Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL2NUMBER);
+            skill3Number = TUtil.GetValue<int>(Data, FirebaseString.SKILL3NUMBER);
         });
     }
 }

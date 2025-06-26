@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class SceneButton : MonoBehaviour
 {
-    private string gacha = "GachaScene";
+    private string gachaScene = "GachaScene";
     private string character = "char";
-    private string gachaResult = "Gacha";
+    private string gacha = "Gacha";
 
 
     public void GachaScene()
     {
-        SceneManager.LoadScene(gacha);
+        SceneManager.LoadScene(gachaScene);
     }
 
     public void CharScene()
@@ -22,6 +22,6 @@ public class SceneButton : MonoBehaviour
 
     public void Gacha()
     {
-        SceneManager.LoadScene(gachaResult);
+        SceneManager.LoadScene(gacha);
     }
 }

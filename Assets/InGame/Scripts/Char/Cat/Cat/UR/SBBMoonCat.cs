@@ -15,21 +15,6 @@ public class SBBMoonCat : CharacterData
         
     }
 
-    protected override void Skill1()
-    {
-
-    }
-
-    protected override void Skill2()
-    {
-
-    }
-
-    protected override void Skill3()
-    {
-        
-    }
-
     protected override void StatisticsUp()
     {
         atk += Random.Range(7, 10);
@@ -37,4 +22,53 @@ public class SBBMoonCat : CharacterData
         maxHp += Random.Range(32, 35);
         speed += Random.Range(1, 5);
     }
+
+    #region Æê ½ºÅ³
+
+    protected override void Skill1_1()
+    {
+
+    }
+
+    protected override void Skill1_2()
+    {
+
+    }
+
+    protected override void Skill1_3()
+    {
+
+    }
+
+    protected override void Skill2_1()
+    {
+
+    }
+
+    protected override void Skill2_2()
+    {
+
+    }
+
+    protected override void Skill2_3()
+    {
+
+    }
+
+    protected override void Skill3_1()
+    {
+
+    }
+
+    protected override void Skill3_2()
+    {
+
+    }
+
+    protected override void Skill3_3()
+    {
+
+    }
+
+    #endregion
 }

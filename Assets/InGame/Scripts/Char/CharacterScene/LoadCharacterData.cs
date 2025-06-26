@@ -11,10 +11,10 @@ public class LoadCharacterData : MonoBehaviour
 {
     private FirebaseFirestore db;
     private DocumentReference doRef;
-    private CharacterData characterData;
+    [SerializeField] private UsingCat characterDataSTO;
 
     [SerializeField] private TextMeshProUGUI[] tmp;
-    [SerializeField] private string patName;
+    //[SerializeField] private string patName;
 
     public int atk;
     public int def;
@@ -38,9 +38,9 @@ public class LoadCharacterData : MonoBehaviour
         //Debug.Log(Manager.userID);
         //Debug.Log(FirebaseString.CharacterData);
         //Debug.Log(patName);
-        Debug.Log(patName + characterData.characterNumber);
-        Debug.Log(patName + characterData.characterNumber + "Data");
-        doRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(patName).Collection(patName + characterData.characterNumber).Document(patName + characterData.characterNumber + "Data");
+        Debug.Log(characterDataSTO.NAME + characterDataSTO.NUMBER);
+        Debug.Log(characterDataSTO.NAME + characterDataSTO.NUMBER + "Data");
+        doRef = db.Collection(FirebaseString.PlayerID).Document(Manager.userID).Collection(FirebaseString.CharacterData).Document(characterDataSTO.NAME).Collection(characterDataSTO.NAME + characterDataSTO.NUMBER).Document(characterDataSTO.NAME + characterDataSTO.NUMBER + "Data");
         doRef.GetSnapshotAsync(Source.Server).ContinueWithOnMainThread(task =>
         {
             var snapshot = task.Result;

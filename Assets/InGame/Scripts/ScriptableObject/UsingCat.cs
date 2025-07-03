@@ -9,6 +9,7 @@ public class UsingCat : ScriptableObject
     public int EXP;
     public int ATK;
     public int DEF;
+    public int HP;
     public int MAXHP;
     public int SPEED;
     public int SKILLPOINT;

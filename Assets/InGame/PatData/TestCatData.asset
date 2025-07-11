@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dded0815a71cd343969728a4f13be0c, type: 3}
   m_Name: TestCatData
   m_EditorClassIdentifier: 
-  Number: 0
-  Name: 
+  NUMBER: 1
+  NAME: SuperMoonCat
   LEVEL: 0
   EXP: 0
   ATK: 0
   DEF: 0
-  MaxHP: 0
+  HP: 0
+  MAXHP: 0
   SPEED: 0
   SKILLPOINT: 0
+  SKILL1NUMBER: 0
+  SKILL2NUMBER: 0
+  SKILL3NUMBER: 0
